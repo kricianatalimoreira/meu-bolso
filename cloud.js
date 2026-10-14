@@ -19,6 +19,10 @@ async function startCloud() {
 }
 function authScreen(message = '') {
   cloudReady = false;
+  document.querySelector('.month').hidden = true;
+  document.querySelector('#backup').hidden = true;
+  document.querySelector('.privacy').textContent = '♡ Acesse sua conta para guardar seus registros com segurança.';
+  document.querySelector('#logout')?.remove();
   document.querySelector('nav').hidden = true;
   document.querySelector('#content').innerHTML = `<div class="balance"><span class="caption">SUAS FINANÇAS, SEMPRE COM VOCÊ</span><h2 style="font-size:26px">Um bolso mais leve ♡</h2><small>Entre para acessar seus registros em qualquer aparelho.</small></div><form id="auth-form" class="card" style="margin-top:18px"><h2>Acesse sua conta</h2><label>E-mail<input name="email" type="email" autocomplete="email" required></label><label>Senha<input name="password" type="password" minlength="8" autocomplete="current-password" required></label><button class="primary" id="login" type="submit">Entrar</button><button class="link" id="signup" type="button" style="width:100%;margin-top:16px">Criar minha conta</button><p id="auth-message" class="caption" role="status" style="line-height:1.7"></p></form>`;
   document.querySelector('#auth-message').textContent = message;
@@ -50,6 +54,8 @@ async function loadCloud(user) {
     cloudRevision = data?.revision || 0;
     cloudReady = true;
     document.querySelector('nav').hidden = false;
+    document.querySelector('.month').hidden = false;
+    document.querySelector('#backup').hidden = false;
     document.querySelector('.privacy').textContent = '♡ Dados salvos na sua conta. Acesse de qualquer aparelho.';
     render();
     if (!document.querySelector('#logout')) {
