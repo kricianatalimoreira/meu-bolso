@@ -18,7 +18,6 @@ async function startCloud() {
   });
 }
 function authScreen(message = '') {
-  if(typeof resetBank==='function')resetBank();
   cloudReady = false;
   document.querySelector('.month').hidden = true;
   document.querySelector('#backup').hidden = true;
